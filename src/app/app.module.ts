@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule } from "@angular/common/http";
-
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { RouterModule } from "@angular/router";
 import { APP_BASE_HREF } from "@angular/common";
@@ -14,6 +14,7 @@ import { MenuComponent } from "./components/menu/menu.component";
 import { ArticulosComponent } from './components/articulos/articulos.component';
 import { MockArticulosService } from './services/mock-articulos.service';
 import { ArticulosFamiliasService } from './services/articulos-familias.service';
+import { ArticulosService } from './services/articulos.service';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ArticulosFamiliasService } from './services/articulos-familias.service'
       { path: "articulos", component: ArticulosComponent }
     ]),
     HttpClientModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { ArticulosFamiliasService } from './services/articulos-familias.service'
   ],
   bootstrap: [AppComponent],
   providers: [
-  {provide: APP_BASE_HREF, useValue : '/' },
+  {provide: APP_BASE_HREF, useValue : '/', providers: [ArticulosService] },
   ]
 })
 export class AppModule {}
